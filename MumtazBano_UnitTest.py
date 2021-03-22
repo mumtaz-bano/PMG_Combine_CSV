@@ -32,7 +32,7 @@ class TestCombineMethod(unittest.TestCase):
          
         if cls.testOutputFile is not None:
             cls.testOutputFile.close()
-            cls.testOutputFile = None
+            
 
        
     def loadTestData(self):
@@ -68,9 +68,7 @@ class TestCombineMethod(unittest.TestCase):
         
         with open(self.testOutputFilePath) as combinedFile:
             combined_df = pd.read_csv(combinedFile, lineterminator='\n')
-            self.testOutputFile.close() 
-            self.testOutputFile = None
-            
+            combined_df.to_csv("combinedFile.csv",index=False)
             # test the sumOfIndividul files is equal to the length of the the dtaFrme of out put combined file
             self.assertEqual(combined_df.shape[0], sumOfEachFiles)
            
